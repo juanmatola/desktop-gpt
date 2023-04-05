@@ -14,13 +14,13 @@ Antes de comenzar, asegúrese de tener instalado lo siguiente en su máquina:
 1. Clone este repositorio:
 
    ```
-   git clone https://github.com/yourusername/desktopgpt.git
+   git clone https://github.com/juanmatola/desktop-gpt.git
    ```
 
 2. Navegue al directorio clonado:
 
    ```
-   cd desktopgpt
+   cd desktop-gpt
    ```
 
 3. Instale las dependencias del proyecto:
