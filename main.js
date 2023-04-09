@@ -1,39 +1,25 @@
-const { app, BrowserWindow, screen } = require('electron');
+const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const WindowManager = require('./utils/windowManager');
 
+/**
+ * Creates a new application window using the WindowManager class for positioning and dimensions.
+ */
 function createWindow() {
+    // Creates a WindowManager instance with monitor index 1, and window dimensions 1000x800
+    const windowManager = new WindowManager(1, 1000, 800);
+    const { x, y, width, height } = windowManager.getWindowBounds();
 
-    // Obtiene información de los monitores conectados
-    const displays = screen.getAllDisplays();
+    // Retrieves the appropriate icon file name based on the current platform
+    const iconPath = path.join(__dirname, 'assets', getIconFileName());
 
-    // Selecciona el monitor en el que deseas abrir la ventana
-    // Usa índice 0 para el monitor principal, 1 para el segundo, etc.
-    const targetDisplay = displays[1] || displays[0];
-
-    // Obtiene las coordenadas x e y del monitor seleccionado
-    const { x, y, width: displayWidth, height: displayHeight } = targetDisplay.bounds;
-
-    // Define el tamaño de la ventana de la aplicación
-    const windowWidth = 1000;
-    const windowHeight = 800;
-
-    // Calcula las coordenadas para centrar la ventana en el monitor seleccionado
-    const centerX = x + (displayWidth - windowWidth) / 2;
-    const centerY = y + (displayHeight - windowHeight) / 2;
-
-    const iconPath = process.platform === 'win32'
-        ? path.join(__dirname, 'assets/icon.ico')
-        : process.platform === 'darwin'
-            ? path.join(__dirname, 'assets/icon.icns')
-            : path.join(__dirname, 'assets/icon.png');
-
-
+    // Creates a new BrowserWindow with the specified options
     const mainWindow = new BrowserWindow({
         title: 'DesktopGPT | ChatGPT | Open AI',
-        width: windowWidth,
-        height: windowHeight,
-        x: centerX,
-        y: centerY,
+        width: width,
+        height: height,
+        x: x,
+        y: y,
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
@@ -42,19 +28,40 @@ function createWindow() {
         darkTheme: true
     });
 
+    // Loads the specified URL into the mainWindow
     mainWindow.loadURL('https://chat.openai.com/chat');
 }
 
+/**
+ * Returns the appropriate icon file name based on the current platform.
+ *
+ * @returns {string} Icon file name.
+ */
+function getIconFileName() {
+    switch (process.platform) {
+        case 'win32':
+            return 'icon.ico';
+        case 'darwin':
+            return 'icon.icns';
+        default:
+            return 'icon.png';
+    }
+}
+
+// Creates the application window when Electron is ready
 app.whenReady().then(createWindow);
 
+// Quits the application when all windows are closed (except on macOS)
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
         app.quit();
     }
 });
 
+// Creates a new window when the application is activated (e.g., clicking on the dock icon on macOS)
 app.on('activate', () => {
     if (BrowserWindow.getAllWindows().length === 0) {
         createWindow();
     }
 });
+

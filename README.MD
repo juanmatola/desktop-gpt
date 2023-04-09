@@ -1,106 +1,83 @@
-# DesktopGPT - ChatGPT Electron App
+# Desktop GPT - ChatGPT Desktop Application
 
-DesktopGPT es una aplicación de escritorio para interactuar con ChatGPT de OpenAI, desarrollada utilizando Electron JS. La aplicación crea una ventana en el monitor seleccionado y carga la interfaz web de ChatGPT (https://chat.openai.com/chat) en ella. Esta aplicación es compatible con Windows, macOS y Linux.
+A desktop application for ChatGPT by OpenAI built using Electron.js. This application allows users to interact with ChatGPT in a standalone window and provides customization options for monitor selection and window dimensions.
 
-## Requisitos previos
+## Getting Started
 
-Antes de comenzar, asegúrese de tener instalado lo siguiente en su máquina:
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-- Node.js (https://nodejs.org/)
-- npm (generalmente viene con Node.js) o yarn (https://yarnpkg.com/)
+### Prerequisites
 
-## Instalación
+To run this project, you'll need to have Node.js and npm installed on your system.
 
-1. Clone este repositorio:
+### Installing
 
-   ```
-   git clone https://github.com/juanmatola/desktop-gpt.git
-   ```
+1. Clone the repository:
 
-2. Navegue al directorio clonado:
-
-   ```
-   cd desktop-gpt
-   ```
-
-3. Instale las dependencias del proyecto:
-
-   ```
-   npm install
-   ```
-
-   O si prefiere utilizar `yarn`:
-
-   ```
-   yarn
-   ```
-
-## Uso
-
-Para iniciar la aplicación en modo de desarrollo, ejecute:
-
+```bash
+git clone https://github.com/your_username/Desktop-GPT.git
 ```
+
+2. Navigate to the project directory:
+
+```bash
+cd Desktop-GPT
+```
+
+3. Install the required dependencies:
+
+```bash
+npm install
+```
+
+### Running the Application
+
+To run the application in development mode, execute the following command:
+
+```bash
 npm start
 ```
 
-O si prefiere utilizar `yarn`:
+## Building the Application
 
-```
-yarn start
-```
+To build the application for distribution, use one of the following commands depending on your target platform:
 
-## Empaquetar la aplicación
+- For all platforms:
 
-Para empaquetar la aplicación para su plataforma, ejecute uno de los siguientes comandos:
-
-- Para Windows:
-
-  ```
-  npm run build:win
-  ```
-
-  O con `yarn`:
-
-  ```
-  yarn build:win
-  ```
-
-- Para macOS:
-
-  ```
-  npm run build:mac
-  ```
-
-  O con `yarn`:
-
-  ```
-  yarn build:mac
-  ```
-
-- Para Linux (AppImage):
-
-  ```
-  npm run build
-  ```
-
-  O con `yarn`:
-
-  ```
-  yarn build
-  ```
-
-Los archivos empaquetados se encontrarán en el directorio `build`.
-
-## Personalización
-
-Para cambiar el monitor en el que se abre la ventana de la aplicación, modifique la siguiente línea en el archivo `main.js`:
-
-```javascript
-const targetDisplay = displays[1] || displays[0];
+```bash
+npm run build
 ```
 
-Reemplace el índice 1 con el índice del monitor deseado. Por ejemplo, use 0 para el monitor principal, 1 para el segundo monitor, etc.
+- For macOS:
 
-## Licencia
+```bash
+npm run build:mac
+```
 
-Este proyecto está bajo la licencia MIT. Consulte el archivo [LICENSE](LICENSE) para obtener más información.
+- For Windows:
+
+```bash
+npm run build:win
+```
+
+- For Linux:
+
+```bash
+npm run build:linux
+```
+
+The built application will be available in the `build` folder.
+
+## Project Structure
+
+- `main.js`: The entry point of the application, responsible for creating the application window and handling Electron events.
+- `./utils/windowManager.js`: A utility class for managing the position and dimensions of the application window.
+- `package.json`: Contains metadata about the application and lists dependencies and build scripts.
+
+## Contributing
+
+Feel free to submit issues and pull requests if you find any bugs or have suggestions for improvements.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
