@@ -18,7 +18,8 @@
     },
     "files": [
       "main.js",
-      "package.json"
+      "package.json",
+      "utils/"
     ],
     "mac": {
       "target": "dmg",
