@@ -15,7 +15,7 @@ To run this project, you'll need to have Node.js and npm installed on your syste
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your_username/Desktop-GPT.git
+git clone https://github.com/juanmatola/desktop-gpt.git
 ```
 
 2. Navigate to the project directory:
